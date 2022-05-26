@@ -17,7 +17,7 @@ class TextThemeState extends Equatable {
   List<Object> get props => [textTheme];
 
   factory TextThemeState.initial() =>
-      const TextThemeState(textTheme: TextThemes.Dark);
+      const TextThemeState(textTheme: TextThemes.Light);
 
   TextThemeState copyWith({
     TextThemes? textTheme,

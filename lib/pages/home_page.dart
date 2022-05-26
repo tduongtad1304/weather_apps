@@ -36,28 +36,28 @@ class _HomePageState extends State<HomePage> {
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white70.withOpacity(0.85),
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () async {
+              _cityName = await Navigator.push(
+                  context, createRoute(const SearchPage()));
+              log('city: $_cityName');
+              if (_cityName != null) {
+                context.read<WeatherCubit>().fetchWeather(_cityName!);
+              }
+            },
+            icon: const Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.search,
+                size: 28,
+              ),
+            ),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
           title: const Text('Weather'),
           actions: [
-            IconButton(
-              onPressed: () async {
-                _cityName = await Navigator.push(
-                    context, createRoute(const SearchPage()));
-                log('city: $_cityName');
-                if (_cityName != null) {
-                  context.read<WeatherCubit>().fetchWeather(_cityName!);
-                }
-              },
-              icon: const Padding(
-                padding: EdgeInsets.only(right: 8.0),
-                child: Icon(
-                  Icons.search,
-                  size: 28,
-                ),
-              ),
-            ),
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
