@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -30,6 +29,6 @@ class WeatherCubit extends Cubit<WeatherState> {
         error: e,
       ));
     }
-    log(state.toString());
+    // log(state.toString());
   }
 }

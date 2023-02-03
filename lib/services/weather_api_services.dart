@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:weather_apps/constants/constants.dart';
 
+import '../constants/secrets.dart';
 import '../exceptions/weather_exception.dart';
 import '../models/weather.dart';
 import 'http_error_handler.dart';
@@ -25,7 +24,6 @@ class WeatherApiServices {
       if (response.statusCode != 200) {
         throw Exception(httpErrorHandler(response));
       } else {
-        log(response.body);
         late final responseBody = json.decode(response.body);
 
         if (responseBody.isEmpty) {
