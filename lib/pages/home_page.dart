@@ -56,10 +56,11 @@ class _HomePageState extends State<HomePage> {
             constraints: const BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: isHot == true
-                      ? const AssetImage("assets/images/hot.jpg")
-                      : const AssetImage("assets/images/cool.jpg"),
-                  fit: BoxFit.cover),
+                image: isHot == true
+                    ? const AssetImage("assets/images/hot.jpg")
+                    : const AssetImage("assets/images/cool.jpg"),
+                fit: BoxFit.cover,
+              ),
             ),
             child: _showWeather(state),
           );
@@ -129,7 +130,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              state.weather.destination,
+              state.weather.destination ?? 'N/A',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40.0,
@@ -182,7 +183,7 @@ class _HomePageState extends State<HomePage> {
             const Spacer(),
             _showIcon(state.weather.weatherStateIcon),
             Text(
-              state.weather.weatherStateDescription,
+              state.weather.weatherStateDescription ?? 'N/A',
               style: TextStyle(
                 fontSize: 25.0,
                 color: _getTextColor(),
@@ -196,10 +197,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget _showIcon(String icon) {
+Widget _showIcon(String? icon) {
   return FadeInImage.assetNetwork(
     placeholder: 'assets/images/loading.gif',
     image: 'http://openweathermap.org/img/wn/$icon@2x.png',
+    imageErrorBuilder: (context, error, stackTrace) {
+      return const Icon(Icons.error);
+    },
     height: 100,
     width: 100,
   );
