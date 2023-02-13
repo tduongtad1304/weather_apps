@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_apps/pages/settings_page.dart';
 
-import '../constants/colors.dart';
+import '../constants/text_styles.dart';
 import '../cubits/cubits.dart';
 import '../widgets/widgets.dart';
 import 'search_page.dart';

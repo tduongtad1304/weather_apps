@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_apps/constants/constants.dart';
+import '../../constants/temperature.dart';
 
 part 'background_images_state.dart';
 
