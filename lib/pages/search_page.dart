@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -22,7 +20,9 @@ class _SearchPageState extends State<SearchPage> {
     await Future.delayed(const Duration(milliseconds: 1000));
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
-      Navigator.of(context).pop(_cityName?.trim());
+      if (context.mounted) {
+        Navigator.of(context).pop(_cityName?.trim());
+      }
     } else {
       setState(() {
         isValidating = false;
@@ -75,7 +75,6 @@ class _SearchPageState extends State<SearchPage> {
                           return 'Please enter a valid city name';
                         }
                       }
-
                       return null;
                     },
                     onSaved: (String? input) {
@@ -83,23 +82,17 @@ class _SearchPageState extends State<SearchPage> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
                 SizedBox(
                   height: 50,
                   width: 220,
                   child: ElevatedButton.icon(
-                    onPressed: () => _submit(),
-                    icon: isValidating == false
-                        ? const Icon(Icons.search)
-                        : Container(),
-                    label: isValidating == false
-                        ? const Text(
-                            'How\'s the weather?',
-                            style: TextStyle(fontSize: 18),
-                          )
-                        : const SizedBox(
+                    onPressed: _submit,
+                    icon: isValidating
+                        ? const SizedBox.shrink()
+                        : const Icon(Icons.search),
+                    label: isValidating
+                        ? const SizedBox(
                             height: 28,
                             width: 28,
                             child: Center(
@@ -107,6 +100,10 @@ class _SearchPageState extends State<SearchPage> {
                                 color: Colors.white,
                               ),
                             ),
+                          )
+                        : const Text(
+                            'How\'s the weather?',
+                            style: TextStyle(fontSize: 18),
                           ),
                   ),
                 )

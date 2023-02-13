@@ -33,6 +33,4 @@ class TempSettingsState extends Equatable {
 
   @override
   String toString() => 'TempSettingsState(tempUnit: $tempUnit)';
-
-  String enumToString() => tempUnit.toString().split('.').last.split(')').first;
 }

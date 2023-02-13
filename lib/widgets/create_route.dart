@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///Constructing page route builder in order to navigate to other [Route] with
+///custom [SlideTransition] animation instead of default animation.
 Route<String> createRoute(Widget widget) {
   return PageRouteBuilder(
     pageBuilder: (_, animation, secondaryAnimation) => widget,

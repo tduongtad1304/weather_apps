@@ -7,10 +7,10 @@ class TempSettingsCubit extends Cubit<TempSettingsState> {
   TempSettingsCubit() : super(TempSettingsState.initial());
 
   void toggleTempUnit() {
-    emit(state.copyWith(
-      tempUnit: state.tempUnit == TempUnit.Celsius
-          ? TempUnit.Fahrenheit
-          : TempUnit.Celsius,
-    ));
+    if (state.tempUnit == TempUnit.Celsius) {
+      emit(state.copyWith(tempUnit: TempUnit.Fahrenheit));
+    } else {
+      emit(state.copyWith(tempUnit: TempUnit.Celsius));
+    }
   }
 }

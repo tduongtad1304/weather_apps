@@ -7,10 +7,10 @@ class TextThemeCubit extends Cubit<TextThemeState> {
   TextThemeCubit() : super(TextThemeState.initial());
 
   void changeTextTheme() {
-    emit(state.copyWith(
-      textTheme: state.textTheme == TextThemes.Dark
-          ? TextThemes.Light
-          : TextThemes.Dark,
-    ));
+    if (state.textTheme == TextThemes.Dark) {
+      emit(state.copyWith(textTheme: TextThemes.Light));
+    } else {
+      emit(state.copyWith(textTheme: TextThemes.Dark));
+    }
   }
 }

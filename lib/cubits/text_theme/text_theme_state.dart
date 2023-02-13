@@ -29,6 +29,4 @@ class TextThemeState extends Equatable {
 
   @override
   String toString() => 'TextThemeState(textTheme: $textTheme)';
-
-  enumToString() => textTheme.toString().split('.').last.split(')').first;
 }
