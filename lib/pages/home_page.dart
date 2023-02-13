@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
         return Center(
           child: Text(
             'Tap the 🔍 icon to find a city.',
-            style: HomeTextStyles.primary.copyWith(color: _textColor(context)),
+            style: HomeTextStyles.primary.change(context),
           ),
         );
       case WeatherStatus.loading:
@@ -186,7 +186,7 @@ String _showTemperature(BuildContext context, double? temperature) {
   }
 }
 
-///Helper method to show text color based on the [textTheme] [TextThemeState] state.
+///Helper method to show text color based on the [TextThemeState] state.
 Color _textColor(BuildContext context) {
   final textTheme = context.watch<TextThemeCubit>().state.textTheme;
   if (textTheme == TextThemes.Light) {

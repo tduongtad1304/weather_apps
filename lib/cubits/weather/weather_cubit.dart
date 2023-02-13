@@ -29,6 +29,5 @@ class WeatherCubit extends Cubit<WeatherState> {
         error: e,
       ));
     }
-    // log(state.toString());
   }
 }
